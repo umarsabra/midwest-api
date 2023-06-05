@@ -21,11 +21,13 @@ export type MessageData = {
 
 export function createMessage(messageData: MessageData): string {
   const temp = `## ${messageData.agent} just got a new appointment! 🎉
+  
 ### 📢 Campaign 
   ✏️ Agent Name: ${messageData.agent}
   ✏️ Campaign Name: ${messageData.campaign}
   🆔 List id: ${messageData.listId}
   📝 List name: ${messageData.lastName}
+
 ### 👤 Client
   ✏️ Full name: ${messageData.fistName} ${messageData.lastName}
   📞 Phone number: ${messageData.phoneNumber}
@@ -34,6 +36,7 @@ export function createMessage(messageData: MessageData): string {
   🏙️ City: ${messageData.city}
   🚩 State: ${messageData.state}
   📭 Zip: ${messageData.zipCode}
+
 ### ☎️ Call
   📝 Notes: ${messageData.callNotes}
   💬 Comments: ${messageData.comments}
