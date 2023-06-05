@@ -29,7 +29,7 @@ export function createMessage(messageData: MessageData): string {
     📝 List name: ${messageData.lastName}
 
 ### 👤 Client
-  ✏️ Full name: ${messageData.fistName} ${messageData.lastName}
+    ✏️ Full name: ${messageData.fistName} ${messageData.lastName}
     📞 Phone number: ${messageData.phoneNumber}
     📧 Email: ${messageData.email}
     📌 Address: ${messageData.address}
