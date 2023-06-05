@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { sendMessage } from "../service/discordService";
+import { MessageData, sendMessage } from "../service/discordService";
 
 const router = Router();
 
@@ -21,9 +21,9 @@ router.get("/", (req: Request, res: Response) => {
     email: req.query.email,
     campaign: req.query.campaign,
     dispo: req.query.dispo,
-  };
+  } as unknown as MessageData;
 
-  sendMessage(JSON.stringify(message));
+  sendMessage(message);
   res.json(message);
 });
 
