@@ -1,14 +1,18 @@
 import express, { Request, Response } from "express";
+import dotenv from "dotenv";
 import discordController from "./controller/discordController";
+
+dotenv.config();
+const PORT = process.env.PORT as unknown as number;
+const IP = process.env.IP;
+
 const app = express();
 app.use("/discord", discordController);
-const port = 8080;
-const ipAddress = "192.168.1.108";
 
 app.get("/", (req, res) => {
   res.send("Welcome to Midwest Api");
 });
 
-app.listen(port, ipAddress, () => {
-  console.log(`Server is running on http://${ipAddress}:${port}`);
+app.listen(PORT, IP, () => {
+  console.log(`Server is running on http://${IP}:${PORT}`);
 });
