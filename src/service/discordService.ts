@@ -54,3 +54,5 @@ export function sendMessage(messageData: MessageData) {
 
   const request = axios.post(webhookUrl, meesage);
 }
+
+export function sendCloserReminder() {}

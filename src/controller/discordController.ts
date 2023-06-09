@@ -27,4 +27,8 @@ router.get("/", (req: Request, res: Response) => {
   res.json(message);
 });
 
+router.post("/reminder", (req, res) => {
+  console.log(req.body);
+});
+
 export default router;
