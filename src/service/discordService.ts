@@ -45,6 +45,28 @@ export function createBookedApptMessage(messageData: MessageData): string {
   return temp;
 }
 
+export type ApptReminderMessageData = {
+  firstName: string;
+  clientName: string;
+  apptDate: string;
+};
+
+export function createApptCloserReminder(data: ApptReminderMessageData) {
+  return `# ATTENTION PLEASE ⚠️
+
+Hey ${data.firstName},
+
+Just a quick reminder to ensure timely dispositioning of the appointment scheduled with ${data.clientName} on ${data.apptDate}.
+Properly logging the outcome of each appointment helps us maintain organized records and provide excellent service to our clients.
+Your attention to this task is greatly appreciated. For any questions, reach out to your team leader or designated contact.
+
+Best regards,
+
+IT Department
+Midwest Solutions Inc.
+`;
+}
+
 export function sendMessage(content: string, webhookUrl: any) {
   const meesage = {
     content,

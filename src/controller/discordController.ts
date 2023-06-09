@@ -1,6 +1,8 @@
 import { Router, Request, Response } from "express";
 import {
+  ApptReminderMessageData,
   MessageData,
+  createApptCloserReminder,
   createBookedApptMessage,
   sendMessage,
 } from "../service/discordService";
@@ -35,7 +37,15 @@ router.get("/", (req: Request, res: Response) => {
 
 router.post("/reminder", (req, res) => {
   const webhookUrl = process.env.DISCORD_REMINDER_WEBHOOK_URL;
-  sendMessage("Hi this is the tase7 bot", webhookUrl);
+
+  const data: ApptReminderMessageData = {
+    firstName: req.query.fist_name as unknown as string,
+    clientName: req.query.client_name as unknown as string,
+    apptDate: req.query.appt_date as unknown as string,
+  };
+
+  const content = createApptCloserReminder(data);
+  sendMessage(content, webhookUrl);
   res.send("message sent");
 });
 
