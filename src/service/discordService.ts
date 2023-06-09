@@ -19,7 +19,7 @@ export type MessageData = {
   dispo: string;
 };
 
-export function createMessage(messageData: MessageData): string {
+export function createBookedApptMessage(messageData: MessageData): string {
   const temp = `## ${messageData.agent} just got a new appointment! 🎉
 
 ### 📢 Campaign 
@@ -45,14 +45,9 @@ export function createMessage(messageData: MessageData): string {
   return temp;
 }
 
-export function sendMessage(messageData: MessageData) {
-  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-  const content = createMessage(messageData);
+export function sendMessage(content: string, webhookUrl: any) {
   const meesage = {
     content,
   };
-
   const request = axios.post(webhookUrl, meesage);
 }
-
-export function sendCloserReminder() {}

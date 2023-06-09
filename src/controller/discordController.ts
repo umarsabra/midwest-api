@@ -1,10 +1,14 @@
 import { Router, Request, Response } from "express";
-import { MessageData, sendMessage } from "../service/discordService";
+import {
+  MessageData,
+  createBookedApptMessage,
+  sendMessage,
+} from "../service/discordService";
 
 const router = Router();
 
 router.get("/", (req: Request, res: Response) => {
-  const message = {
+  const messageData = {
     agent: req.query.agent,
     fistName: req.query.first_name,
     lastName: req.query.last_name,
@@ -23,12 +27,16 @@ router.get("/", (req: Request, res: Response) => {
     dispo: req.query.dispo,
   } as unknown as MessageData;
 
-  sendMessage(message);
-  res.json(message);
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+  const content = createBookedApptMessage(messageData);
+  sendMessage(content, webhookUrl);
+  res.json(messageData);
 });
 
 router.post("/reminder", (req, res) => {
-  console.log(req.body);
+  const webhookUrl = process.env.DISCORD_REMINDER_WEBHOOK_URL;
+  sendMessage("Hi this is the tase7 bot", webhookUrl);
+  res.send("message sent");
 });
 
 export default router;
