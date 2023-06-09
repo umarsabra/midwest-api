@@ -40,7 +40,7 @@ router.post("/reminder", (req, res) => {
 
   const data: ApptReminderMessageData = req.body.customData;
 
-  console.log(req.body.pipleline_stage);
+  console.log(req.body);
   const content = createApptCloserReminder(data);
   sendMessage(content, webhookUrl);
   res.send("message sent");
