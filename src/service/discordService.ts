@@ -49,6 +49,7 @@ export type ApptReminderMessageData = {
   firstName: string;
   clientName: string;
   apptDate: string;
+  apptTime: string;
 };
 
 export function createApptCloserReminder(data: ApptReminderMessageData) {
@@ -56,7 +57,7 @@ export function createApptCloserReminder(data: ApptReminderMessageData) {
 
 Hey ${data.firstName},
 
-Just a quick reminder to ensure timely dispositioning of the appointment scheduled with ${data.clientName} on ${data.apptDate}.
+Just a quick reminder to ensure timely dispositioning of the appointment scheduled with ${data.clientName} on ${data.apptDate} at ${data.apptTime}.
 Properly logging the outcome of each appointment helps us maintain organized records and provide excellent service to our clients.
 Your attention to this task is greatly appreciated. For any questions, reach out to your team leader or designated contact.
 
