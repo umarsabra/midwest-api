@@ -38,7 +38,6 @@ router.get("/", (req: Request, res: Response) => {
 router.post("/reminder", (req, res) => {
   const webhookUrl = process.env.DISCORD_REMINDER_WEBHOOK_URL;
 
-  console.log(req.body);
   const data: ApptReminderMessageData = req.body.customData;
 
   const content = createApptCloserReminder(data);
