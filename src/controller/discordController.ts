@@ -6,6 +6,7 @@ import {
   createBookedApptMessage,
   sendMessage,
 } from "../service/discordService";
+import { postOpportunity } from "../service/ghlService";
 
 const router = Router();
 
@@ -32,6 +33,7 @@ router.get("/", (req: Request, res: Response) => {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
   const content = createBookedApptMessage(messageData);
   sendMessage(content, webhookUrl);
+  postOpportunity(messageData);
   res.json(messageData);
 });
 
