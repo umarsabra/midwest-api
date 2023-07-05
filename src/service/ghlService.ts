@@ -34,6 +34,7 @@ export function postOpportunity(leadData: MessageData) {
   };
   const URL = `https://rest.gohighlevel.com/v1/pipelines/${piplineId}/opportunities/`;
   const GHL_API_KEY = process.env.GHL_API_KEY;
+  console.log(opportunity);
   axios.post(URL, opportunity, {
     headers: {
       Authorization: `Bearer ${GHL_API_KEY}`,
