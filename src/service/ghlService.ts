@@ -30,7 +30,7 @@ export function postOpportunity(leadData: MessageData) {
     email: leadData.email,
     phone: leadData.phoneNumber,
     source: "Midwest API",
-    tags: ["cc appt"],
+    tags: ["Midwest cc appt"],
   };
   const URL = `https://rest.gohighlevel.com/v1/pipelines/${piplineId}/opportunities/`;
   const GHL_API_KEY = process.env.GHL_API_KEY;
