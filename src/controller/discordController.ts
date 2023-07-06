@@ -6,11 +6,11 @@ import {
   createBookedApptMessage,
   sendMessage,
 } from "../service/discordService";
-import { postOpportunity } from "../service/ghlService";
+import { postContactOpportunity, postOpportunity } from "../service/ghlService";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
   const messageData = {
     agent: req.query.agent,
     fistName: req.query.first_name,
@@ -32,8 +32,9 @@ router.get("/", (req: Request, res: Response) => {
 
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
   const content = createBookedApptMessage(messageData);
+
   sendMessage(content, webhookUrl);
-  postOpportunity(messageData);
+  postContactOpportunity(messageData);
   res.json(messageData);
 });
 
@@ -42,7 +43,6 @@ router.post("/reminder", (req, res) => {
 
   const data: ApptReminderMessageData = req.body.customData;
 
-  console.log(req.body);
   const content = createApptCloserReminder(data);
   sendMessage(content, webhookUrl);
   res.send("message sent");

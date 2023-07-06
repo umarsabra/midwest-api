@@ -68,9 +68,9 @@ Midwest Solutions Inc.
 `;
 }
 
-export function sendMessage(content: string, webhookUrl: any) {
+export async function sendMessage(content: string, webhookUrl: any) {
   const meesage = {
     content,
   };
-  const request = axios.post(webhookUrl, meesage);
+  axios.post(webhookUrl, meesage);
 }
