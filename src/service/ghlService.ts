@@ -5,10 +5,11 @@ type Opportunity = {
   title: string;
   status: string;
   stageId: string;
+  contactId?: string;
 
   name?: string;
   email?: string;
-  phone: string;
+  phone?: string;
   source: string;
 
   tags: Array<string>;
@@ -20,7 +21,6 @@ type Contact = {
   lastName: string;
   phone: string;
   email: string;
-  contactId?: string;
 
   dateOfBirth?: string;
 
@@ -62,7 +62,10 @@ type ReadContact = {
   customField: Array<any>;
 };
 
-export async function postOpportunity(leadData: MessageData) {
+export async function postOpportunity(
+  leadData: MessageData,
+  contactId: string
+) {
   const stageId = "29f5376a-91d9-44dc-af7e-48bc543a8c6c";
   const piplineId = "X3kJN2nkL0j25sYutakV";
 
@@ -76,8 +79,8 @@ export async function postOpportunity(leadData: MessageData) {
   const opportunity: Opportunity = {
     title,
     stageId,
+    contactId,
     status: "open",
-    phone: leadData.phoneNumber,
     source: "Midwest API",
     tags: ["midwest cc appt"],
   };
@@ -130,7 +133,8 @@ export async function postContact(leadData: MessageData) {
 
 export async function postContactOpportunity(leadData: MessageData) {
   //POST CONTACT
-  postContact(leadData);
+  const contact = await postContact(leadData);
+
   //POST OPPORTUINTY
-  postOpportunity(leadData);
+  postOpportunity(leadData, contact.id);
 }
